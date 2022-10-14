@@ -11,6 +11,12 @@
   to = "/.netlify/functions/server"
   status = 200
 
+[[redirects]]
+  from = "/admin/*"
+  to = "admin.fayardthibault.fr"
+  status = 200
+  force = true
+
 [[headers]]
   for = "/build/*"
   [headers.values]
