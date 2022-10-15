@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+type Periode {
+  fromDate DateTime
+  toDate   DateTime?
+}
+
+model Project {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  uuid          String   @unique @default(uuid())
+  name          String
+  description   String?
+  technologyIds String[] @db.ObjectId
+  color         String?
+  url           String?
+  githubUrl     String?
+  isPublic      Boolean
+  isPersonal    Boolean
+  photoURL      String?
+  devPeriode    Periode?
+  experienceId  String?  @db.ObjectId
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now()) @updatedAt
+
+  technologies Technology[] @relation(fields: [technologyIds], references: [id])
+  experience   Experience?  @relation(fields: [experienceId], references: [id])
+
+  @@map("projects")
+}
+
+enum TechnologyType {
+  framework
+  language
+  package
+  software
+}
+
+enum TechnologyTag {
+  database
+  development
+  management
+  mobile
+  web
+}
+
+model Technology {
+  id         String          @id @default(auto()) @map("_id") @db.ObjectId
+  uuid       String          @unique @default(uuid())
+  name       String
+  icon       String?
+  color      String?
+  projectIds String[]        @db.ObjectId
+  type       TechnologyType
+  tags       TechnologyTag[]
+
+  projects Project[] @relation(fields: [projectIds], references: [id])
+
+  @@map("technologies")
+}
+
+type ExperienceRole {
+  name     String
+  fromDate DateTime
+  toDate   DateTime?
+}
+
+model Experience {
+  id          String           @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  slug        String
+  roles       ExperienceRole[]
+  description String?
+  fromDate    DateTime
+  toDate      DateTime?
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @default(now()) @updatedAt
+
+  projects Project[]
+
+  @@map("experiences")
+}
+
+model Formation {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  slug        String
+  description String?
+  fromDate    DateTime
+  toDate      DateTime?
+
+  @@map("formations")
+}
