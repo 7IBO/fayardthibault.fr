@@ -56,7 +56,7 @@ const App = () => {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="bg-slate-900 text-white">
         <AppView />
         <ScrollRestoration />
         <Scripts />
