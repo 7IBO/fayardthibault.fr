@@ -1,4 +1,7 @@
 {
+  "name": "fayardthibault-portfolio",
+  "version": "0.1.0",
+  "description": "Thibault Fayard Porfolio - Développeur Web Junior",
   "private": false,
   "sideEffects": false,
   "scripts": {
