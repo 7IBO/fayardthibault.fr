@@ -22,7 +22,7 @@ export function getProjectListItems ({
     prisma.project.findMany({
       cursor: cursor ? { id: cursor } : undefined,
       take,
-      select: { id: true, uuid: true, name: true, description: true, color: true, githubUrl: true, technologies: { select: { uuid: true, name: true, icon: true, color: true } } },
+      select: { id: true, uuid: true, name: true, description: true, color: true, githubUrl: true, projectTechnologies: { select: { technology: { select: { uuid: true, name: true, icon: true, color: true } } } } },
       orderBy: { updatedAt: "desc" },
     })
   ])
@@ -36,10 +36,8 @@ export function createProject ({
   isPublic,
   experienceId,
   githubUrl,
-  technologyIds,
   url,
 }: {
-  technologyIds: Project[ "technologyIds" ];
   name: Project[ "name" ];
   isPublic: Project[ "isPublic" ];
   isPersonal: Project[ "isPersonal" ];
@@ -54,7 +52,6 @@ export function createProject ({
       isPublic,
       experienceId,
       githubUrl,
-      technologyIds,
       url,
     },
   });

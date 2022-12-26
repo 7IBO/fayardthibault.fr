@@ -1,0 +1,21 @@
+{
+  "name": "Portfolio - Thibault Fayard",
+  "short_name": "Thibault Fayard",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "default_locale": "fr",
+  "description": "Développeur Web Junior spécialisé dans les technologies JavaScript, principalement sur la librairie React & frameworks associés (ex: Next.js, Remix.run)"
+}

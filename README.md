@@ -5,6 +5,6 @@
 ## Build with
 
 - [Remix](https://remix.run/)
-- [Prisma](https://prisma.io)
-- [Tailwindcss](https://tailwindcss.com)
-- [Netlify](https://www.netlify.com/)
+- [TailwindCSS](https://tailwindcss.com)
+- [Netlify](https://netlify.com/)
+- [Heroicons](https://heroicons.com/)

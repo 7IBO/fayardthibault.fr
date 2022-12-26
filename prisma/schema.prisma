@@ -16,26 +16,37 @@ type Periode {
 }
 
 model Project {
-  id            String   @id @default(auto()) @map("_id") @db.ObjectId
-  uuid          String   @unique @default(uuid())
-  name          String
-  description   String?
-  technologyIds String[] @db.ObjectId
-  color         String?
-  url           String?
-  githubUrl     String?
-  isPublic      Boolean
-  isPersonal    Boolean
-  photoURL      String?
-  devPeriode    Periode?
-  experienceId  String?  @db.ObjectId
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @default(now()) @updatedAt
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  uuid         String   @unique @default(uuid())
+  name         String
+  description  String?
+  color        String?
+  url          String?
+  githubUrl    String?
+  isPublic     Boolean
+  isPersonal   Boolean
+  photoURL     String?
+  devPeriode   Periode?
+  experienceId String?  @db.ObjectId
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now()) @updatedAt
 
-  technologies Technology[] @relation(fields: [technologyIds], references: [id])
-  experience   Experience?  @relation(fields: [experienceId], references: [id])
+  projectTechnologies ProjectTechnology[]
+  experience          Experience?         @relation(fields: [experienceId], references: [id])
 
   @@map("projects")
+}
+
+model ProjectTechnology {
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  projectId    String @db.ObjectId
+  technologyId String @db.ObjectId
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  project    Project    @relation(fields: [projectId], references: [id])
+  technology Technology @relation(fields: [technologyId], references: [id])
 }
 
 enum TechnologyType {
@@ -54,16 +65,15 @@ enum TechnologyTag {
 }
 
 model Technology {
-  id         String          @id @default(auto()) @map("_id") @db.ObjectId
-  uuid       String          @unique @default(uuid())
-  name       String
-  icon       String?
-  color      String?
-  projectIds String[]        @db.ObjectId
-  type       TechnologyType
-  tags       TechnologyTag[]
+  id    String          @id @default(auto()) @map("_id") @db.ObjectId
+  uuid  String          @unique @default(uuid())
+  name  String
+  icon  String?
+  color String?
+  type  TechnologyType
+  tags  TechnologyTag[]
 
-  projects Project[] @relation(fields: [projectIds], references: [id])
+  projectTechnologies ProjectTechnology[]
 
   @@map("technologies")
 }

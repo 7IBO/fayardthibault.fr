@@ -11,7 +11,7 @@ type LoaderData = {
 };
 
 export const loader: LoaderFunction = async ({ request, params }) => {
-  invariant(params.projectId, "noteId not found");
+  invariant(params.projectId, "projectId not found");
 
   const project = await getProject({ uuid: params.projectId });
   if (!project) {

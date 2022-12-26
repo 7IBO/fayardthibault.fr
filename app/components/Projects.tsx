@@ -26,10 +26,12 @@ const Projects = ({ projects }: Props) => {
               <img
                 src="https://media-exp1.licdn.com/dms/image/C4E03AQH-uTfLCIL1DA/profile-displayphoto-shrink_800_800/0/1653316104518?e=1671062400&v=beta&t=kRMaWCxK8t8vAJOIvRS_UezpcCKBPvnIAfnw7XljyU0"
                 className="aspect-[6/4] object-cover rounded-3xl outline-gray-500 outline-[5px] hover:outline outline-offset-4 hover:animate-ping-hover hover:shadow-2xl"
-                style={{
-                  "--tw-shadow-color": project.color || undefined,
-                  outlineColor: project.color || undefined,
-                }}
+                style={
+                  {
+                    "--tw-shadow-color": project.color || undefined,
+                    outlineColor: project.color || undefined,
+                  } as React.CSSProperties
+                }
                 alt=""
               />
               {/* <Link to={`/projects/${project.uuid}`} prefetch="render">
@@ -42,16 +44,17 @@ const Projects = ({ projects }: Props) => {
               <p className="mb-4">{project.description}</p>
               <p className="font-semibold uppercase mb-2">Technologies :</p>
               <div className="flex gap-2">
-                {project.technologies.map((tech) => (
+                {project.projectTechnologies.map(({ technology }) => (
                   <Link
-                    to={`/technology/${tech.uuid}`}
+                    to={`/technology/${technology.uuid}`}
                     className={`py-1 px-3 rounded-full text-white bg-sky-500`}
                     style={{
-                      backgroundColor: tech.color || project.color || undefined,
+                      backgroundColor:
+                        technology.color || project.color || undefined,
                     }}
-                    key={tech.uuid}
+                    key={technology.uuid}
                   >
-                    {tech.name}
+                    {technology.name}
                   </Link>
                 ))}
               </div>
