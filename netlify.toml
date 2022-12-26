@@ -12,10 +12,11 @@
   status = 200
 
 [[redirects]]
-  from = "/admin/*"
-  to = "admin.fayardthibault.fr"
+  from = "/admin"
+  to = "https://api.fayardthibault.fr/admin"
   status = 200
   force = true
+  headers = {X-From = "Netlify"}
 
 [[headers]]
   for = "/build/*"
