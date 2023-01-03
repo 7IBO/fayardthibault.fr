@@ -18,26 +18,26 @@ export function links() {
     {
       rel: "apple-touch-icon",
       sizes: "180x180",
-      href: "/assets/favicon/apple-touch-icon.png",
+      href: "/favicons/apple-touch-icon.png",
     },
     {
       rel: "icon",
       type: "image/png",
       sizes: "32x32",
-      href: "/assets/favicon/favicon-32x32.png",
+      href: "/favicons/favicon-32x32.png",
     },
     {
       rel: "icon",
       type: "image/png",
       sizes: "16x16",
-      href: "/assets/favicon/favicon-16x16.png",
+      href: "/favicons/favicon-16x16.png",
     },
     {
       rel: "icon",
       type: "image/x-icon",
-      href: "/assets/favicon/favicon.ico",
+      href: "/favicons/favicon.ico",
     },
-    { rel: "manifest", href: "/assets/favicon/manifest.json" },
+    { rel: "manifest", href: "/favicons/manifest.json" },
   ];
 }
 
